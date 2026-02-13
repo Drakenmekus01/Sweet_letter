@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Valentine Special 💍❤️</title>
+<title>Forever Us 💜💍</title>
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
@@ -12,16 +12,17 @@
 /* ================= RESET ================= */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* ================= BODY ================= */
 body {
-  margin: 0;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ffe0e9, #ffccd5, #fff0f5);
+  background: linear-gradient(135deg, #f4ecff, #e9dbff, #f8f2ff);
   font-family: 'Pacifico', cursive;
   overflow: hidden;
   padding: 20px;
@@ -31,79 +32,92 @@ body {
 #app,
 #letterPage {
   width: 100%;
-  max-width: 600px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 40px 30px;
-  border-radius: 25px;
-  box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
-  border: 2px solid #ffb3c1;
+  max-width: 620px;
+  background: rgba(255, 255, 255, 0.97);
+  padding: 45px 35px;
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(140, 90, 200, 0.35);
+  border: 2px solid #b79cff;
   text-align: center;
   position: relative;
+
+  /* FIX: make container scrollable on small screens */
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+  scroll-behavior: smooth;
+}
+
+#app .actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 /* ================= HEADINGS ================= */
 h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 2.2rem;
-  color: #d147a3;
+  font-size: 2.4rem;
+  color: #6a3fbf;
   margin-bottom: 25px;
-  text-shadow: 1px 1px 6px rgba(255, 105, 180, 0.7);
+  text-shadow: 1px 1px 8px rgba(140, 90, 200, 0.5);
 }
 
 /* ================= TEXT ================= */
 .letterBody {
-  font-size: 1.2rem;
-  color: #b30059;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  color: #4b2a7a;
+  line-height: 1.7;
   margin-bottom: 30px;
+  word-wrap: break-word;
 }
 
 .sender {
-  font-size: 1.1rem;
-  color: #ff3366;
-  margin-top: 25px;
-  font-weight: bold;
+  font-size: 1.05rem;
+  color: #6a3fbf;
+  margin-top: 30px;
+  margin-bottom: 15px; /* extra space to prevent cut-off */
 }
 
 /* ================= BUTTONS ================= */
 .btn {
-  padding: 12px 28px;
-  font-size: 1.2rem;
+  padding: 12px 30px;
+  font-size: 1.15rem;
   border: none;
   border-radius: 50px;
-  margin: 10px;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+  box-shadow: 0 6px 18px rgba(140, 90, 200, 0.35);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Pacifico', cursive;
+  flex: 1; /* makes buttons equally sized */
+  min-width: 120px;
 }
 
 #yesBtn {
-  background: linear-gradient(45deg, #ff6699, #ff3366);
+  background: linear-gradient(45deg, #8f63e6, #6a3fbf);
   color: #fff;
 }
 
 #yesBtn:hover {
-  transform: scale(1.15) rotate(-3deg);
-  box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+  transform: scale(1.15);
+  box-shadow: 0 10px 28px rgba(140, 90, 200, 0.6);
 }
 
 #noBtn {
-  background: linear-gradient(45deg, #fff0f5, #ffe6f2);
-  color: #d147a3;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background: linear-gradient(45deg, #efe6ff, #e2d4ff);
+  color: #4b2a7a;
+  position: relative;
 }
 
 /* ================= LOVE MESSAGE ================= */
 #loveMessage {
   display: none;
-  font-size: 2.5rem;
-  color: #ff3366;
-  margin-top: 20px;
-  text-shadow: 2px 2px 12px rgba(255, 105, 180, 0.9);
-  animation: pop 0.5s ease-out forwards;
+  font-size: 2.6rem;
+  color: #6a3fbf;
+  margin-top: 25px;
+  text-shadow: 2px 2px 14px rgba(140, 90, 200, 0.8);
+  animation: pop 0.6s ease-out forwards;
 }
 
 @keyframes pop {
@@ -114,66 +128,71 @@ h1 {
 /* ================= LETTER ICON ================= */
 #letterIcon {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 2rem;
+  top: 16px;
+  right: 18px;
+  font-size: 2.1rem;
   cursor: pointer;
   display: none;
   transition: transform 0.3s ease;
 }
 
 #letterIcon:hover {
-  transform: scale(1.3) rotate(10deg);
+  transform: scale(1.3) rotate(8deg);
+}
+
+.iconNote {
+  font-size: 0.85rem;
+  color: #7a5bbf;
+  margin-top: 10px;
+  display: none;
+  margin-bottom: 15px; /* ensure visible on mobile */
 }
 
 /* ================= LETTER PAGE ================= */
 #letterPage {
   display: none;
+  text-align: left;
 }
 
-/* Scrollable letter content */
 .letterScroll {
   max-height: 65vh;
   overflow-y: auto;
-  padding-right: 10px;
-  text-align: left;
-  color: #b30059;
-  line-height: 1.7;
-  font-size: 1.1rem;
+  padding-right: 12px;
+  color: #4b2a7a;
+  line-height: 1.8;
+  font-size: 1.05rem;
 }
 
-/* Scrollbar styling */
 .letterScroll::-webkit-scrollbar {
   width: 6px;
 }
 .letterScroll::-webkit-scrollbar-thumb {
-  background: #ff99bb;
+  background: #b79cff;
   border-radius: 10px;
 }
 
-/* ================= BACK BUTTON ================= */
+/* ================= BACK ICON ================= */
 #backBtn {
-  background: linear-gradient(45deg, #ff6699, #ff3366);
-  color: #fff;
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: none;
   border: none;
-  border-radius: 25px;
-  padding: 10px 20px;
-  font-size: 1rem;
+  font-size: 1.6rem;
   cursor: pointer;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+  color: #6a3fbf;
   transition: transform 0.3s ease;
 }
 
 #backBtn:hover {
-  transform: scale(1.1) rotate(-2deg);
+  transform: scale(1.2);
 }
 
 /* ================= HEARTS ================= */
 .heart {
   position: absolute;
   font-size: 24px;
-  color: #ff3366;
+  color: #8f63e6;
   animation: floatUp 1.5s ease-out forwards;
   pointer-events: none;
 }
@@ -203,63 +222,68 @@ h1 {
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 480px) {
-  h1 { font-size: 1.7rem; }
+  h1 { font-size: 1.8rem; }
   .letterBody { font-size: 1rem; }
-  .btn { font-size: 1rem; padding: 10px 20px; }
-  #loveMessage { font-size: 2rem; }
+  .btn { font-size: 1rem; padding: 10px 22px; }
+  #loveMessage { font-size: 2.1rem; }
+  #app, #letterPage { padding: 25px 20px; }
+  /* ensure bottom elements always visible */
+  .sender, .iconNote { margin-bottom: 20px; }
 }
 </style>
-</head>
 
+</head>
 <body>
 
 <!-- MAIN APP -->
 <div id="app">
-  <span id="letterIcon" title="Open my love letter">💌</span>
+  <span id="letterIcon" title="Read my letter">💌</span>
 
-  <h1>Dear Kate Lourece Dajay Siva, 💍</h1>
+  <h1>Kate Lourece Dajay Siva 💜</h1>
 
   <p class="letterBody">
-    On this special day, I have something important to ask you.
-    Will you be my Valentine and continue sharing this journey of love and joy with me?
+    Today isn’t just about asking a question — it’s about choosing love,
+    commitment, and a future together.
+    <br><br>
+    Will you be my Valentine, and continue walking this beautiful journey with me?
   </p>
 
-  <button id="yesBtn" class="btn">Yes, I do ❤️</button>
-  <button id="noBtn" class="btn">No 😅</button>
+  <!-- ACTION AREA -->
+  <div class="actions">
+    <button id="yesBtn" class="btn">Yes, I do 💜</button>
+    <button id="noBtn" class="btn">No 🙈</button>
+  </div>
 
-  <div id="loveMessage">I LOVE YOU ❤️❤️❤️</div>
+  <div id="loveMessage">I LOVE YOU 💜💜💜</div>
 
-  <p class="sender">With love,<br>Kennard 💖</p>
+  <p class="iconNote" id="iconNote">Tap the 💌 to read my letter</p>
+
+  <p class="sender">
+    Always yours,<br>
+    Kennard
+  </p>
 </div>
-
 <!-- LETTER PAGE -->
 <div id="letterPage">
-  <button id="backBtn">⬅ Back</button>
+  <button id="backBtn" title="Go back">⬅</button>
 
-  <h1>My Dearest Kate, 💖</h1>
+  <h1>My Dearest Kate 🤍</h1>
 
   <div class="letterScroll">
+    <p>
+      I can hardly believe that we are approaching six beautiful years together this coming July. When I look back to July 8, 2020—the day you said yes to me—I am filled with a quiet happiness that still feels just as real as it did then. That moment marked the beginning of a journey that has shaped my life in ways I never imagined. Every shared smile, every late-night conversation, every simple hug has helped me grow, learn, and love more deeply.
+    </p>
 
-<p>
-  I can hardly believe that we are approaching six beautiful years together this coming July. When I look back to July 8, 2020—the day you said yes to me—I am filled with a quiet happiness that still feels just as real as it did then. That moment marked the beginning of a journey that has shaped my life in ways I never imagined. Every shared smile, every late-night conversation, every simple hug has helped me grow, learn, and love more deeply.
-</p>
+    <p>
+      You have been my steady presence through both calm days and challenging moments. In a world that often feels uncertain, you remain my comfort, my peace, and my sense of home. With you, I have learned the value of patience, understanding, and choosing love even when life becomes difficult. Your kindness and strength inspire me more than you know.
+    </p>
 
-<p>
-  You have been my steady presence through both calm days and challenging moments. In a world that often feels uncertain, you remain my comfort, my peace, and my sense of home. With you, I have learned the value of patience, understanding, and choosing love even when life becomes difficult. Your kindness and strength inspire me more than you know.
-</p>
+    <p>
+      As we continue moving forward, I hope you always remember how deeply valued and cherished you are. May your dreams unfold beautifully, your days be filled with confidence, and your heart remain protected wherever life takes you. I wish you success in every path you choose, courage in every challenge you face, and safety in every step you take. No matter where the future leads us, I promise to stand beside you, supporting you and believing in you.
+    </p>
 
-<p>
-  As we continue moving forward, I hope you always remember how deeply valued and cherished you are. May your dreams unfold beautifully, your days be filled with confidence, and your heart remain protected wherever life takes you. I wish you success in every path you choose, courage in every challenge you face, and safety in every step you take. No matter where the future leads us, I promise to stand beside you, supporting you and believing in you.
-</p>
-
-<p>
-  Thank you for being not only my love, but also my partner, my best friend, and my greatest blessing. I look forward to building more memories, sharing more laughter, and growing together in the years ahead. Here’s to our past, our present, and the future we will continue to create—hand in hand, with love that remains steady and true.
-</p>
-
-
-    <p style="margin-top:20px;">
-      With all my love,<br>
-      Kennard 💖
+    <p>
+      Thank you for being not only my love, but also my partner, my best friend, and my greatest blessing. I look forward to building more memories, sharing more laughter, and growing together in the years ahead. Here’s to our past, our present, and the future we will continue to create—hand in hand, with love that remains steady and true.
     </p>
   </div>
 </div>
@@ -269,14 +293,15 @@ const noBtn = document.getElementById('noBtn');
 const yesBtn = document.getElementById('yesBtn');
 const loveMessage = document.getElementById('loveMessage');
 const letterIcon = document.getElementById('letterIcon');
+const iconNote = document.getElementById('iconNote');
 const appDiv = document.getElementById('app');
 const letterPage = document.getElementById('letterPage');
 const backBtn = document.getElementById('backBtn');
 
 /* Move NO button randomly */
 function randomPosition() {
-  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20); // margin safety
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
   return { x, y };
 }
 
@@ -292,6 +317,7 @@ yesBtn.addEventListener('click', () => {
   noBtn.style.display = 'none';
   loveMessage.style.display = 'block';
   letterIcon.style.display = 'inline';
+  iconNote.style.display = 'block';
 
   for (let i = 0; i < 60; i++) createHeart();
   for (let i = 0; i < 40; i++) createConfetti();
@@ -300,7 +326,7 @@ yesBtn.addEventListener('click', () => {
 function createHeart() {
   const heart = document.createElement('div');
   heart.className = 'heart';
-  heart.textContent = '❤️';
+  heart.textContent = '🤍';
   heart.style.left = window.innerWidth / 2 + 'px';
   heart.style.top = window.innerHeight / 2 + 'px';
   heart.style.setProperty('--x', (Math.random() - 0.5) * 300 + 'px');
@@ -313,7 +339,7 @@ function createConfetti() {
   const confetti = document.createElement('div');
   confetti.className = 'confetti';
   confetti.style.left = Math.random() * window.innerWidth + 'px';
-  confetti.style.background = `hsl(${Math.random() * 360},70%,60%)`;
+  confetti.style.background = `hsl(${Math.random() * 360},50%,70%)`;
   document.body.appendChild(confetti);
   setTimeout(() => confetti.remove(), 2000);
 }
@@ -328,6 +354,12 @@ backBtn.onclick = () => {
   letterPage.style.display = 'none';
   appDiv.style.display = 'block';
 };
+
+/* Initial alignment for YES/NO buttons */
+window.addEventListener('load', () => {
+  noBtn.style.position = 'relative';
+  yesBtn.style.position = 'relative';
+});
 </script>
 
 </body>
