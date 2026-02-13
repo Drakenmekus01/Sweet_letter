@@ -1,304 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Special? 💍❤️</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Valentine Special 💍❤️</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap');
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+}
 
-  /* ===== Body & Theme ===== */
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #ffe0e9, #ffccd5, #fff0f5);
-    font-family: 'Pacifico', cursive;
-    overflow: hidden;
-    position: relative;
-    padding: 20px;
-    box-sizing: border-box;
+/* ================= BODY ================= */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffe0e9, #ffccd5, #fff0f5);
+  font-family: 'Pacifico', cursive;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* ================= CONTAINERS ================= */
+#app,
+#letterPage {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px 30px;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
+  border: 2px solid #ffb3c1;
+  text-align: center;
+  position: relative;
+}
+
+/* ================= HEADINGS ================= */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: #d147a3;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 6px rgba(255, 105, 180, 0.7);
+}
+
+/* ================= TEXT ================= */
+.letterBody {
+  font-size: 1.2rem;
+  color: #b30059;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.sender {
+  font-size: 1.1rem;
+  color: #ff3366;
+  margin-top: 25px;
+  font-weight: bold;
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  padding: 12px 28px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  margin: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#yesBtn {
+  background: linear-gradient(45deg, #ff6699, #ff3366);
+  color: #fff;
+}
+
+#yesBtn:hover {
+  transform: scale(1.15) rotate(-3deg);
+  box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+}
+
+#noBtn {
+  background: linear-gradient(45deg, #fff0f5, #ffe6f2);
+  color: #d147a3;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ================= LOVE MESSAGE ================= */
+#loveMessage {
+  display: none;
+  font-size: 2.5rem;
+  color: #ff3366;
+  margin-top: 20px;
+  text-shadow: 2px 2px 12px rgba(255, 105, 180, 0.9);
+  animation: pop 0.5s ease-out forwards;
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+/* ================= LETTER ICON ================= */
+#letterIcon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 2rem;
+  cursor: pointer;
+  display: none;
+  transition: transform 0.3s ease;
+}
+
+#letterIcon:hover {
+  transform: scale(1.3) rotate(10deg);
+}
+
+/* ================= LETTER PAGE ================= */
+#letterPage {
+  display: none;
+}
+
+/* Scrollable letter content */
+.letterScroll {
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: 10px;
+  text-align: left;
+  color: #b30059;
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+/* Scrollbar styling */
+.letterScroll::-webkit-scrollbar {
+  width: 6px;
+}
+.letterScroll::-webkit-scrollbar-thumb {
+  background: #ff99bb;
+  border-radius: 10px;
+}
+
+/* ================= BACK BUTTON ================= */
+#backBtn {
+  background: linear-gradient(45deg, #ff6699, #ff3366);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+  transition: transform 0.3s ease;
+}
+
+#backBtn:hover {
+  transform: scale(1.1) rotate(-2deg);
+}
+
+/* ================= HEARTS ================= */
+.heart {
+  position: absolute;
+  font-size: 24px;
+  color: #ff3366;
+  animation: floatUp 1.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translate(var(--x), var(--y)) scale(2);
+    opacity: 0;
   }
+}
 
-  #app, #letterPage {
-    text-align: center;
-    z-index: 10;
-    max-width: 600px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px 30px;
-    border-radius: 25px;
-    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
-    border: 2px solid #ffb3c1;
-    box-sizing: border-box;
-    position: relative;
+/* ================= CONFETTI ================= */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: confettiFall 2s linear forwards;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translateY(600px) rotate(720deg);
+    opacity: 0;
   }
+}
 
-  h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2rem;
-    margin-bottom: 25px;
-    color: #d147a3;
-    text-shadow: 1px 1px 6px rgba(255, 105, 180, 0.7);
-  }
-
-  p.letterBody {
-    font-size: 1.2rem;
-    color: #b30059;
-    line-height: 1.6;
-    margin-bottom: 35px;
-    word-wrap: break-word;
-  }
-
-  p.sender {
-    font-size: 1.1rem;
-    color: #ff3366;
-    font-weight: bold;
-    margin-top: 20px;
-  }
-
-  .btn {
-    padding: 12px 28px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 50px;
-    margin: 12px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
-  }
-
-  #yesBtn {
-    background: linear-gradient(45deg, #ff6699, #ff3366);
-    color: #fff;
-  }
-
-  #yesBtn:hover {
-    transform: scale(1.15) rotate(-3deg);
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
-  }
-
-  #noBtn {
-    background: linear-gradient(45deg, #fff0f5, #ffe6f2);
-    color: #d147a3;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  /* ===== Floating hearts ===== */
-  .heart {
-    position: absolute;
-    color: #ff3366;
-    font-size: 24px;
-    animation: floatUp 1.5s ease-out forwards;
-    user-select: none;
-    pointer-events: none;
-  }
-
-  @keyframes floatUp {
-    0% { opacity: 1; transform: translate(0,0) scale(1); }
-    100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(2); }
-  }
-
-  /* ===== Confetti ===== */
-  .confetti {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: #ff6699;
-    opacity: 0.8;
-    border-radius: 50%;
-    animation: confettiFall 2s linear forwards;
-  }
-
-  @keyframes confettiFall {
-    0% { transform: translateY(0) rotate(0deg); opacity:1; }
-    100% { transform: translateY(600px) rotate(720deg); opacity:0; }
-  }
-
-  /* ===== I Love You message ===== */
-  #loveMessage {
-    display: none;
-    font-size: 2.5rem;
-    color: #ff3366;
-    text-shadow: 2px 2px 12px rgba(255, 105, 180, 0.9);
-    animation: pop 0.5s ease-out forwards;
-    word-wrap: break-word;
-  }
-
-  @keyframes pop {
-    0% { transform: scale(0); }
-    100% { transform: scale(1); }
-  }
-
-  /* ===== Letter Icon ===== */
-  #letterIcon {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    display: none; /* hidden initially */
-  }
-
-  #letterIcon:hover {
-    transform: scale(1.3) rotate(10deg);
-  }
-
-  /* ===== Back Button ===== */
-  #backBtn {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 25px;
-    background: linear-gradient(45deg, #ff6699, #ff3366);
-    color: #fff;
-    cursor: pointer;
-    margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
-  }
-
-  #backBtn:hover {
-    transform: scale(1.1) rotate(-2deg);
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
-  }
-
-  /* ===== Responsive ===== */
-  @media (max-width: 768px) {
-    h1 { font-size: 1.8rem; }
-    p.letterBody { font-size: 1.1rem; }
-    .btn { padding: 10px 22px; font-size: 1.1rem; }
-    #loveMessage { font-size: 2rem; }
-    #letterIcon { font-size: 1.8rem; }
-    #backBtn { font-size: 0.95rem; padding: 8px 18px; }
-  }
-
-  @media (max-width: 480px) {
-    h1 { font-size: 1.5rem; }
-    p.letterBody { font-size: 1rem; }
-    .btn { padding: 8px 18px; font-size: 1rem; }
-    #loveMessage { font-size: 1.8rem; }
-    #app { padding: 30px 20px; }
-    #letterIcon { font-size: 1.5rem; top: 10px; right: 10px; }
-  }
-
+/* ================= RESPONSIVE ================= */
+@media (max-width: 480px) {
+  h1 { font-size: 1.7rem; }
+  .letterBody { font-size: 1rem; }
+  .btn { font-size: 1rem; padding: 10px 20px; }
+  #loveMessage { font-size: 2rem; }
+}
 </style>
 </head>
+
 <body>
 
-<!-- Main App -->
+<!-- MAIN APP -->
 <div id="app">
-  <span id="letterIcon" title="Open my love letter!">💌</span>
+  <span id="letterIcon" title="Open my love letter">💌</span>
+
   <h1>Dear Kate Lourece Dajay Siva, 💍</h1>
+
   <p class="letterBody">
-    On this special day, I have something important to ask you. 
+    On this special day, I have something important to ask you.
     Will you be my Valentine and continue sharing this journey of love and joy with me?
   </p>
+
   <button id="yesBtn" class="btn">Yes, I do ❤️</button>
   <button id="noBtn" class="btn">No 😅</button>
+
   <div id="loveMessage">I LOVE YOU ❤️❤️❤️</div>
-  <p class="sender">With love, <br>Kennard 💖</p>
+
+  <p class="sender">With love,<br>Kennard 💖</p>
 </div>
 
-<!-- Letter Page (hidden by default) -->
-<div id="letterPage" style="display:none;">
-  <button id="backBtn">⬅</button>
+<!-- LETTER PAGE -->
+<div id="letterPage">
+  <button id="backBtn">⬅ Back</button>
+
   <h1>My Dearest Kate, 💖</h1>
-  <p>
-    I can't believe we are almost celebrating six beautiful years together this July. 
-    Thinking back to 07-08-2020, the day you said yes to me, fills my heart with so much joy and gratitude. 
-    Every day since has been a blessing, and I treasure every laugh, every hug, and every moment we've shared. 
-    You have been my constant support, my happiness, and the love of my life. 
-    I promise to continue cherishing you, making memories, and walking beside you through every adventure and challenge. 
-    Thank you for being my love, my partner, and my best friend. 
-    I love you more than words can express, and I am forever grateful to have you by my side. 
-    Here's to our love, our memories, and the countless more to come. 
-    Happy almost 6th anniversary, my dearest Kate.
-  </p>
-  <p>With all my love, <br>Kennard 💖</p>
+
+  <div class="letterScroll">
+   <p>
+  Alright, here it is—~300 words, natural, heartfelt, no repetition, and with a clear future-focused, good-luck, stay-safe tone added. You can paste this directly into your letter section.
+</p>
+
+<p>
+  I can hardly believe that we are approaching six beautiful years together this coming July. When I look back to July 8, 2020—the day you said yes to me—I am filled with a quiet happiness that still feels just as real as it did then. That moment marked the beginning of a journey that has shaped my life in ways I never imagined. Every shared smile, every late-night conversation, every simple hug has helped me grow, learn, and love more deeply.
+</p>
+
+<p>
+  You have been my steady presence through both calm days and challenging moments. In a world that often feels uncertain, you remain my comfort, my peace, and my sense of home. With you, I have learned the value of patience, understanding, and choosing love even when life becomes difficult. Your kindness and strength inspire me more than you know.
+</p>
+
+<p>
+  As we continue moving forward, I hope you always remember how deeply valued and cherished you are. May your dreams unfold beautifully, your days be filled with confidence, and your heart remain protected wherever life takes you. I wish you success in every path you choose, courage in every challenge you face, and safety in every step you take. No matter where the future leads us, I promise to stand beside you, supporting you and believing in you.
+</p>
+
+<p>
+  Thank you for being not only my love, but also my partner, my best friend, and my greatest blessing. I look forward to building more memories, sharing more laughter, and growing together in the years ahead. Here’s to our past, our present, and the future we will continue to create—hand in hand, with love that remains steady and true.
+</p>
+
+
+    <p style="margin-top:20px;">
+      With all my love,<br>
+      Kennard 💖
+    </p>
+  </div>
 </div>
 
 <script>
-  const noBtn = document.getElementById('noBtn');
-  const yesBtn = document.getElementById('yesBtn');
-  const loveMessage = document.getElementById('loveMessage');
-  const letterIcon = document.getElementById('letterIcon');
-  const appDiv = document.getElementById('app');
-  const letterPage = document.getElementById('letterPage');
-  const backBtn = document.getElementById('backBtn');
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const loveMessage = document.getElementById('loveMessage');
+const letterIcon = document.getElementById('letterIcon');
+const appDiv = document.getElementById('app');
+const letterPage = document.getElementById('letterPage');
+const backBtn = document.getElementById('backBtn');
 
-  // Random positions for the No button
-  function getRandomPosition() {
-    const padding = 50;
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
-    return { x, y };
-  }
+/* Move NO button randomly */
+function randomPosition() {
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+  return { x, y };
+}
 
-  noBtn.addEventListener('mouseenter', () => {
-    const pos = getRandomPosition();
-    noBtn.style.left = pos.x + 'px';
-    noBtn.style.top = pos.y + 'px';
-  });
+noBtn.addEventListener('mouseenter', () => {
+  const pos = randomPosition();
+  noBtn.style.left = pos.x + 'px';
+  noBtn.style.top = pos.y + 'px';
+});
 
-  // Click Yes
-  yesBtn.addEventListener('click', () => {
-    yesBtn.style.display = 'none';
-    noBtn.style.display = 'none';
-    loveMessage.style.display = 'block';
-    letterIcon.style.display = 'inline'; // show letter icon after Yes
+/* YES button click */
+yesBtn.addEventListener('click', () => {
+  yesBtn.style.display = 'none';
+  noBtn.style.display = 'none';
+  loveMessage.style.display = 'block';
+  letterIcon.style.display = 'inline';
 
-    // Create hearts
-    for (let i = 0; i < 60; i++) {
-      createHeart();
-    }
+  for (let i = 0; i < 60; i++) createHeart();
+  for (let i = 0; i < 40; i++) createConfetti();
+});
 
-    // Create confetti
-    for (let i = 0; i < 40; i++) {
-      createConfetti();
-    }
-  });
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.textContent = '❤️';
+  heart.style.left = window.innerWidth / 2 + 'px';
+  heart.style.top = window.innerHeight / 2 + 'px';
+  heart.style.setProperty('--x', (Math.random() - 0.5) * 300 + 'px');
+  heart.style.setProperty('--y', (-Math.random() * 400 - 100) + 'px');
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 2000);
+}
 
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.textContent = '❤️';
-    document.body.appendChild(heart);
-    const x = (Math.random() - 0.5) * 300 + 'px';
-    const y = (-Math.random() * 400 - 100) + 'px';
-    heart.style.setProperty('--x', x);
-    heart.style.setProperty('--y', y);
-    heart.style.left = (window.innerWidth / 2 - 12) + 'px';
-    heart.style.top = (window.innerHeight / 2 - 12) + 'px';
-    setTimeout(() => heart.remove(), 2000);
-  }
+function createConfetti() {
+  const confetti = document.createElement('div');
+  confetti.className = 'confetti';
+  confetti.style.left = Math.random() * window.innerWidth + 'px';
+  confetti.style.background = `hsl(${Math.random() * 360},70%,60%)`;
+  document.body.appendChild(confetti);
+  setTimeout(() => confetti.remove(), 2000);
+}
 
-  function createConfetti() {
-    const confetti = document.createElement('div');
-    confetti.classList.add('confetti');
-    confetti.style.left = Math.random() * window.innerWidth + 'px';
-    confetti.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
-    document.body.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 2000);
-  }
+/* SPA navigation */
+letterIcon.onclick = () => {
+  appDiv.style.display = 'none';
+  letterPage.style.display = 'block';
+};
 
-  // Letter Icon Click - show letter on same page
-  letterIcon.addEventListener('click', () => {
-    appDiv.style.display = 'none';
-    letterPage.style.display = 'block';
-  });
-
-  // Back Button Click - return to main app
-  backBtn.addEventListener('click', () => {
-    letterPage.style.display = 'none';
-    appDiv.style.display = 'block';
-  });
-
+backBtn.onclick = () => {
+  letterPage.style.display = 'none';
+  appDiv.style.display = 'block';
+};
 </script>
 
 </body>
