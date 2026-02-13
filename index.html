@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Special? 💍❤️</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap');
+
+  /* ===== Body & Theme ===== */
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffe0e9, #ffccd5, #fff0f5);
+    font-family: 'Pacifico', cursive;
+    overflow: hidden;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  #app {
+    text-align: center;
+    z-index: 10;
+    max-width: 600px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 30px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
+    border: 2px solid #ffb3c1;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #d147a3;
+    text-shadow: 1px 1px 6px rgba(255, 105, 180, 0.7);
+  }
+
+  p.letterBody {
+    font-size: 1.2rem;
+    color: #b30059;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    word-wrap: break-word;
+  }
+
+  p.sender {
+    font-size: 1.1rem;
+    color: #ff3366;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .btn {
+    padding: 12px 28px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    margin: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+  }
+
+  #yesBtn {
+    background: linear-gradient(45deg, #ff6699, #ff3366);
+    color: #fff;
+  }
+
+  #yesBtn:hover {
+    transform: scale(1.15) rotate(-3deg);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+  }
+
+  #noBtn {
+    background: linear-gradient(45deg, #fff0f5, #ffe6f2);
+    color: #d147a3;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* ===== Floating hearts ===== */
+  .heart {
+    position: absolute;
+    color: #ff3366;
+    font-size: 24px;
+    animation: floatUp 1.5s ease-out forwards;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  @keyframes floatUp {
+    0% { opacity: 1; transform: translate(0,0) scale(1); }
+    100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(2); }
+  }
+
+  /* ===== Confetti ===== */
+  .confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #ff6699;
+    opacity: 0.8;
+    border-radius: 50%;
+    animation: confettiFall 2s linear forwards;
+  }
+
+  @keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity:1; }
+    100% { transform: translateY(600px) rotate(720deg); opacity:0; }
+  }
+
+  /* ===== I Love You message ===== */
+  #loveMessage {
+    display: none;
+    font-size: 2.5rem;
+    color: #ff3366;
+    text-shadow: 2px 2px 12px rgba(255, 105, 180, 0.9);
+    animation: pop 0.5s ease-out forwards;
+    word-wrap: break-word;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    h1 { font-size: 1.8rem; }
+    p.letterBody { font-size: 1.1rem; }
+    .btn { padding: 10px 22px; font-size: 1.1rem; }
+    #loveMessage { font-size: 2rem; }
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.5rem; }
+    p.letterBody { font-size: 1rem; }
+    .btn { padding: 8px 18px; font-size: 1rem; }
+    #loveMessage { font-size: 1.8rem; }
+    #app { padding: 30px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <h1>Dear Kate Lourece Dajay Siva, 💍</h1>
+  <p class="letterBody">
+    On this special day, I have something important to ask you. 
+    Will you be my Valentine and continue sharing this journey of love and joy with me?
+  </p>
+  <button id="yesBtn" class="btn">Yes, I do ❤️</button>
+  <button id="noBtn" class="btn">No 😅</button>
+  <div id="loveMessage">I LOVE YOU ❤️❤️❤️</div>
+  <p class="sender">With love, <br>Kennard 💖</p>
+</div>
+
+<script>
+  const noBtn = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesBtn');
+  const loveMessage = document.getElementById('loveMessage');
+
+  // Random positions for the No button
+  function getRandomPosition() {
+    const padding = 50;
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+    return { x, y };
+  }
+
+  noBtn.addEventListener('mouseenter', () => {
+    const pos = getRandomPosition();
+    noBtn.style.left = pos.x + 'px';
+    noBtn.style.top = pos.y + 'px';
+  });
+
+  // Click Yes
+  yesBtn.addEventListener('click', () => {
+    yesBtn.style.display = 'none';
+    noBtn.style.display = 'none';
+    loveMessage.style.display = 'block';
+
+    // Create hearts
+    for (let i = 0; i < 60; i++) {
+      createHeart();
+    }
+
+    // Create confetti
+    for (let i = 0; i < 40; i++) {
+      createConfetti();
+    }
+  });
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '❤️';
+    document.body.appendChild(heart);
+    const x = (Math.random() - 0.5) * 300 + 'px';
+    const y = (-Math.random() * 400 - 100) + 'px';
+    heart.style.setProperty('--x', x);
+    heart.style.setProperty('--y', y);
+    heart.style.left = (window.innerWidth / 2 - 12) + 'px';
+    heart.style.top = (window.innerHeight / 2 - 12) + 'px';
+    setTimeout(() => heart.remove(), 2000);
+  }
+
+  function createConfetti() {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = Math.random() * window.innerWidth + 'px';
+    confetti.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 2000);
+  }
+</script>
+
+</body>
+</html>
