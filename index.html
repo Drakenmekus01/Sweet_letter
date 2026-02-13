@@ -22,17 +22,18 @@
     box-sizing: border-box;
   }
 
-  #app {
+  #app, #letterPage {
     text-align: center;
     z-index: 10;
     max-width: 600px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     padding: 40px 30px;
     border-radius: 25px;
     box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
     border: 2px solid #ffb3c1;
     box-sizing: border-box;
+    position: relative;
   }
 
   h1 {
@@ -134,12 +135,47 @@
     100% { transform: scale(1); }
   }
 
+  /* ===== Letter Icon ===== */
+  #letterIcon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: none; /* hidden initially */
+  }
+
+  #letterIcon:hover {
+    transform: scale(1.3) rotate(10deg);
+  }
+
+  /* ===== Back Button ===== */
+  #backBtn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #ff6699, #ff3366);
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+  }
+
+  #backBtn:hover {
+    transform: scale(1.1) rotate(-2deg);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+  }
+
   /* ===== Responsive ===== */
   @media (max-width: 768px) {
     h1 { font-size: 1.8rem; }
     p.letterBody { font-size: 1.1rem; }
     .btn { padding: 10px 22px; font-size: 1.1rem; }
     #loveMessage { font-size: 2rem; }
+    #letterIcon { font-size: 1.8rem; }
+    #backBtn { font-size: 0.95rem; padding: 8px 18px; }
   }
 
   @media (max-width: 480px) {
@@ -148,12 +184,16 @@
     .btn { padding: 8px 18px; font-size: 1rem; }
     #loveMessage { font-size: 1.8rem; }
     #app { padding: 30px 20px; }
+    #letterIcon { font-size: 1.5rem; top: 10px; right: 10px; }
   }
+
 </style>
 </head>
 <body>
 
+<!-- Main App -->
 <div id="app">
+  <span id="letterIcon" title="Open my love letter!">💌</span>
   <h1>Dear Kate Lourece Dajay Siva, 💍</h1>
   <p class="letterBody">
     On this special day, I have something important to ask you. 
@@ -165,10 +205,32 @@
   <p class="sender">With love, <br>Kennard 💖</p>
 </div>
 
+<!-- Letter Page (hidden by default) -->
+<div id="letterPage" style="display:none;">
+  <button id="backBtn">⬅</button>
+  <h1>My Dearest Kate, 💖</h1>
+  <p>
+    I can't believe we are almost celebrating six beautiful years together this July. 
+    Thinking back to 07-08-2020, the day you said yes to me, fills my heart with so much joy and gratitude. 
+    Every day since has been a blessing, and I treasure every laugh, every hug, and every moment we've shared. 
+    You have been my constant support, my happiness, and the love of my life. 
+    I promise to continue cherishing you, making memories, and walking beside you through every adventure and challenge. 
+    Thank you for being my love, my partner, and my best friend. 
+    I love you more than words can express, and I am forever grateful to have you by my side. 
+    Here's to our love, our memories, and the countless more to come. 
+    Happy almost 6th anniversary, my dearest Kate.
+  </p>
+  <p>With all my love, <br>Kennard 💖</p>
+</div>
+
 <script>
   const noBtn = document.getElementById('noBtn');
   const yesBtn = document.getElementById('yesBtn');
   const loveMessage = document.getElementById('loveMessage');
+  const letterIcon = document.getElementById('letterIcon');
+  const appDiv = document.getElementById('app');
+  const letterPage = document.getElementById('letterPage');
+  const backBtn = document.getElementById('backBtn');
 
   // Random positions for the No button
   function getRandomPosition() {
@@ -189,6 +251,7 @@
     yesBtn.style.display = 'none';
     noBtn.style.display = 'none';
     loveMessage.style.display = 'block';
+    letterIcon.style.display = 'inline'; // show letter icon after Yes
 
     // Create hearts
     for (let i = 0; i < 60; i++) {
@@ -223,6 +286,19 @@
     document.body.appendChild(confetti);
     setTimeout(() => confetti.remove(), 2000);
   }
+
+  // Letter Icon Click - show letter on same page
+  letterIcon.addEventListener('click', () => {
+    appDiv.style.display = 'none';
+    letterPage.style.display = 'block';
+  });
+
+  // Back Button Click - return to main app
+  backBtn.addEventListener('click', () => {
+    letterPage.style.display = 'none';
+    appDiv.style.display = 'block';
+  });
+
 </script>
 
 </body>
